@@ -1,0 +1,33 @@
+{
+  "name": "linkedinroads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -w",
+    "start": "nodemon ./server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "puppeteer": "^10.0.0",
+    "webpack": "^5.38.1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass-loader": "^12.0.0",
+    "style-loader": "^2.0.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
