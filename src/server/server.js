@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", apiRouter);
 
+// I believe bodyParser has been deprecated and is now native to express?
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
