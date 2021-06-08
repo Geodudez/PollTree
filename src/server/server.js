@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const apiRouter = require("./routes/api");
+const bodyParser = require("body-parser");
 const passport = require("passport");
 require("./passport");
 
@@ -11,6 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", apiRouter);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
