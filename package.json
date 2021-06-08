@@ -2,19 +2,31 @@
   "name": "linkedinroads",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "client/index.js",
   "scripts": {
-    "build": "webpack -w",
-    "start": "nodemon ./server/server.js",
+    "start": "nodemon server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "nodemon server/server.js & NODE_ENV=development webpack serve --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Geodudez",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
     "eslint": "^7.28.0",
     "eslint-config-airbnb": "^18.2.1",
+    "nodemon": "^2.0.7",
     "puppeteer": "^10.0.0",
-    "webpack": "^5.38.1"
+    "sass": "^1.32.11",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "@babel/core": "^7.14.3",
