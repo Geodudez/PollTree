@@ -18,7 +18,7 @@ app.use((req, res) =>
 
 //passport configuration - initialize to initialize Passport, session for persistent login sessions
 app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.session());
 
 const userLoggedIn = (req, res, next) => {
   req.user ? next() : res.sendStatus(401);
