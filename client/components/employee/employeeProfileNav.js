@@ -1,11 +1,3 @@
-// import React from 'react';
-
-// export default function EmployeeNav() {
-//     return (
-//         <p> I'm a nav bar </p>
-//     )
-// }
-
 import EmployeePollQuestion from './employeePollQuestions';
 import React from 'react';
 import clsx from 'clsx';
@@ -26,8 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
+
 
 const drawerWidth = 240;
 
