@@ -7,8 +7,6 @@ export default function EmployeePollQuestion() {
     return (
         <div>
             <PollQuestion/>
-            <CheckBoxes/>
-            <NextButton/>
         </div>
         
 )
