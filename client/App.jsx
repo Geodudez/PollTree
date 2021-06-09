@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import EmployerLogin from './components/employer/EmployerLogin.js';
 import EmployeeLogin from './components/employee/employeeLogin';
 import EmployeeProfile from './components/employee/employeeProfile.js';
+import EmployerSignup from './components/employer/EmployerSignup.js';
+import EmployerProfile from './components/employer/EmployerProfile.js';
 
 function App() {
   return (
@@ -12,6 +14,9 @@ function App() {
         <Route exact path='/' render={() => <LoginComponent />} />
         <Route path='/employeeLogin' render={() => <EmployeeLogin />} />
         <Route path='/employerLogin' render={() => <EmployerLogin />} />
+        <Route path='/employerSignup' render={() => <EmployerSignup />} />
+        <Route path='/employerProfile' render={() => <EmployerProfile />} />
+        <Route path='/employeeProfile' render={() => <EmployeeProfile />} />
       </Switch>
     </BrowserRouter>
     // <EmployeeProfile></EmployeeProfile>

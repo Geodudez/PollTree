@@ -1,23 +1,20 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import { Redirect, Link } from 'react-router-dom';
+import { useState } from 'react';
 export default function EmployeeLogin() {
-  return (
-    <div className='LoginComponent-Holder'>
-      {/* onclick to send to the employer page */}
-      {/* <Link
-        component='button'
-        variant='body2'
-        onClick={() => {
-          console.info("I'm a button.");
-          fetch('/auth/linkedin', {
-            method: 'GET',
-            redirect: 'follow',
-          });
-        }}
-      >
-        Sign in with LinkedIn
-      </Link> */}
-      <a href='/auth/linkedin'>Sign in with LinkedIn </a>
-    </div>
-  );
+  //set some state with hooks
+  const [redirect, setRedirect] = useState(false);
+  if (redirect === false) {
+    return (
+      <div className='LoginComponent-Holder'>
+        <a href='/auth/linkedin'>Sign in with LinkedIn </a>
+        <Link to='/employeeProfile'>
+          <div>work around Allison</div>
+        </Link>
+      </div>
+    );
+    setRedirect(true);
+  } else if (redirect === true) {
+    return <Redirect to='/employeeProfile' />;
+  }
 }

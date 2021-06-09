@@ -59,16 +59,16 @@ passport.use(
     (req, username, password, done) => {
       log.debug('Login process: ', username);
       return db
-        .one(
+        .query(
           `SELECT user_id, user_name, user_email, user_role
         FROM employers
         WHERE user_email=$1 AND user_pass=$2`,
           [username, password]
         )
-        .then(result => {
+        .then((result) => {
           return done(null, result);
         })
-        .catch(err => {
+        .catch((err) => {
           log.error('/login: ' + err);
           return done(null, false, { message: 'Wrong user name or password' });
         });

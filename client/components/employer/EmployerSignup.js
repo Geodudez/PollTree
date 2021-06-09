@@ -1,10 +1,8 @@
 import TextField from '@material-ui/core/TextField';
-
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-const EmployerLogin = (props) => {
+const EmployerSignup = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -28,20 +26,11 @@ const EmployerLogin = (props) => {
     });
   };
 
-  const grabInfo = () => {
-    fetch('/api/getAllData')
-      .then((res) => res.json())
-      .then((res) => {
-        console.log('i got data');
-        console.log('res', res);
-      });
-  };
-
   return (
     <div className='LoginComponent-Holder'>
       <TextField
         id='outlined-helperText'
-        label='Username'
+        label='Create Username'
         // defaultValue='Default Value'
         // helperText='Some important text'
         variant='outlined'
@@ -49,24 +38,16 @@ const EmployerLogin = (props) => {
       />
       <TextField
         id='outlined-password-input'
-        label='Password'
+        label='Create Password'
         type='password'
         autoComplete='current-password'
         variant='outlined'
         onChange={handlePasswordInput}
       />
       {/* onclick to send to the employer page */}
-      <Link to='/employerProfile' onClick={grabInfo}>
-        <div>work around Allison</div>
-      </Link>
       <button onClick={handleClick}>SUBMIT</button>
-      <div> Not a user? </div>
-      {/* <a href='/employer-signup'>sign up</a> */}
-      <Link to='/employerSignup' onClick={() => console.log('clicked')}>
-        sign up
-      </Link>
     </div>
   );
 };
 
-export default EmployerLogin;
+export default EmployerSignup;
