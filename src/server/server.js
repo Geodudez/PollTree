@@ -11,6 +11,8 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(__dirname + '/public'));
+
 app.use("/api", apiRouter);
 
 // I believe bodyParser has been deprecated and is now native to express?
@@ -29,7 +31,14 @@ const userLoggedIn = (req, res, next) => {
   req.user ? next() : res.sendStatus(401);
 };
 
-//sign
+//post request signin
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/home',
+  failureRedirect: '/login',
+}), function (req, res, next) { 
+  console.log('inside passport local authentication')
+})
+
 
 app.use((err, req, res, next) => {
   const defaultErr = {
