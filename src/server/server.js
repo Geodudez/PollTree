@@ -41,7 +41,7 @@ app.post(
   '/login',
   passport.authenticate('local', {
     successRedirect: '/employer',
-    failureRedirect: '/login',
+    failureRedirect: '/',
   }),
   function (req, res, next) {
     console.log('inside passport local authentication');
@@ -58,9 +58,12 @@ app.get(
 //linkedin login
 app.get(
   '/auth/linkedin/callback',
-  passport.authenticate('linkedin', { failureRedirect: '/login' }),
+  passport.authenticate('linkedin', {
+    successRedirect: "http://localhost:8080/employee",
+    failureRedirect: '/'
+  }),
   function (req, res) {
-    res.redirect('/employee');
+    res.redirect('http://localhost:8080/employee');
   }
 );
 
