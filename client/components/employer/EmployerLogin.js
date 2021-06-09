@@ -47,6 +47,9 @@ const EmployerLogin = (props) => {
         onChange={handlePasswordInput}
       />
       {/* onclick to send to the employer page */}
+      <Link to='/employerProfile'>
+        <div>work around Allison</div>
+      </Link>
       <button onClick={handleClick}>SUBMIT</button>
       <div> Not a user? </div>
       {/* <a href='/employer-signup'>sign up</a> */}

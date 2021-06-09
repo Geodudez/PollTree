@@ -13,22 +13,28 @@ export default function PollQuestion() {
     'I often find myself researching solutions to issues that occurred in this technology.',
     'I would recommend this technology for others to use.',
   ];
-  console.log(questions.length);
+
   const displayQuestion = [];
+  const resultPoll = {};
   questions.forEach((question) => {
-    displayQuestion.push(<CheckBoxes question={question} />);
+    resultPoll[question] = 0;
+    displayQuestion.push(
+      <CheckBoxes question={question} results={resultPoll} />
+    );
   });
-  console.log(displayQuestion);
 
   return (
     <div>
       {displayQuestion[currentQuestion]
         ? displayQuestion[currentQuestion]
         : 'Poll Completed! Thank you!'}
-      <NextButton
-        setQuestion={setCurrentQuestion}
-        currentQuestion={currentQuestion}
-      />
+      {
+        <NextButton
+          setQuestion={setCurrentQuestion}
+          currentQuestion={currentQuestion}
+          onClick={() => console.log(resultPoll)}
+        />
+      }
     </div>
   );
 }

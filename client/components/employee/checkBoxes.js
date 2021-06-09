@@ -17,6 +17,7 @@ export default function CheckBoxes(props) {
           label='Strongly Agree'
           labelPlacement='top'
           idvalue='5'
+          onClick={() => (props.results[question] = idValue)}
         />
         <FormControlLabel
           value='top'
@@ -24,6 +25,7 @@ export default function CheckBoxes(props) {
           label='Agree'
           labelPlacement='top'
           idvalue='4'
+          onClick={() => (props.results[question] = idValue)}
         />
         <FormControlLabel
           value='top'
@@ -31,6 +33,7 @@ export default function CheckBoxes(props) {
           label='Neutral'
           labelPlacement='top'
           idvalue='3'
+          onClick={() => (props.results[question] = idValue)}
         />
         <FormControlLabel
           value='top'
@@ -38,6 +41,7 @@ export default function CheckBoxes(props) {
           label='Disagree'
           labelPlacement='top'
           idvalue='2'
+          onClick={() => (props.results[question] = idValue)}
         />
         <FormControlLabel
           value='top'
@@ -45,6 +49,7 @@ export default function CheckBoxes(props) {
           label='Strongly Disagree'
           labelPlacement='top'
           idvalue='1'
+          onClick={() => (props.results[question] = idValue)}
         />
       </FormGroup>
     </FormControl>

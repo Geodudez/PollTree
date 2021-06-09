@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 export default function EmployeeLogin() {
   return (
     <div className='LoginComponent-Holder'>
@@ -18,6 +18,9 @@ export default function EmployeeLogin() {
         Sign in with LinkedIn
       </Link> */}
       <a href='/auth/linkedin'>Sign in with LinkedIn </a>
+      <Link to='/employeeProfile'>
+        <div>work around Allison</div>
+      </Link>
     </div>
   );
 }
