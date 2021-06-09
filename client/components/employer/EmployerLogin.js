@@ -28,6 +28,15 @@ const EmployerLogin = (props) => {
     });
   };
 
+  const grabInfo = () => {
+    fetch('/api/getAllData')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('i got data');
+        console.log('res', res);
+      });
+  };
+
   return (
     <div className='LoginComponent-Holder'>
       <TextField
@@ -47,7 +56,7 @@ const EmployerLogin = (props) => {
         onChange={handlePasswordInput}
       />
       {/* onclick to send to the employer page */}
-      <Link to='/employerProfile'>
+      <Link to='/employerProfile' onClick={grabInfo}>
         <div>work around Allison</div>
       </Link>
       <button onClick={handleClick}>SUBMIT</button>

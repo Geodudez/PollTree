@@ -18,6 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import PeopleIcon from '@material-ui/icons/People';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -154,18 +155,24 @@ export default function EmployerProfileNav() {
               <ListItemText primary={text} />
             </ListItem>
           ))} */}
-          <ListItem button key='Data'>
-            <ListItemIcon>{<DonutLargeIcon />}</ListItemIcon>
-            <ListItemText primary='Data' />
-          </ListItem>
-          <ListItem button key='Responses'>
-            <ListItemIcon>{<MailIcon />}</ListItemIcon>
-            <ListItemText primary='Responses' />
-          </ListItem>
-          <ListItem button key='Employees'>
-            <ListItemIcon>{<PeopleIcon />}</ListItemIcon>
-            <ListItemText primary='Employees' />
-          </ListItem>
+          <Link to='/pieContainer' style={{ textDecoration: 'none' }}>
+            <ListItem button key='Data'>
+              <ListItemIcon>{<DonutLargeIcon />}</ListItemIcon>
+              <ListItemText primary='Data' />
+            </ListItem>
+          </Link>
+          <Link to='/messages' style={{ textDecoration: 'none' }}>
+            <ListItem button key='Responses'>
+              <ListItemIcon>{<MailIcon />}</ListItemIcon>
+              <ListItemText primary='Responses' />
+            </ListItem>
+          </Link>
+          <Link to='/workerList' style={{ textDecoration: 'none' }}>
+            <ListItem button key='Employees'>
+              <ListItemIcon>{<PeopleIcon />}</ListItemIcon>
+              <ListItemText primary='Employees' />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         {/* <List>

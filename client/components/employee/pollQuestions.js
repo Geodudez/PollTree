@@ -16,9 +16,8 @@ export default function PollQuestion() {
   ];
 
   const displayQuestion = [];
-  const resultPoll = {};
   questions.forEach((question) => {
-    setResults((resultPoll[question] = 0));
+    setResults((resultPoll[question] = null));
     displayQuestion.push(
       <CheckBoxes
         question={question}
