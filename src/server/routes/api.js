@@ -4,7 +4,8 @@ const controller = require("../controllers/controllers");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+
+router.get("/employer", (req, res) => {
   res.status(200).json("Welcome to pollTree");
 });
 
@@ -20,8 +21,8 @@ router.get("/getAllData", controller.getAllData, (req, res) => {
     });
 });
 
-router.post("/pollResponse", (req, res) => {
-  res.sendStatus(200);
+router.post("/pollResponse", controller.insertData, (req, res) => {
+  res.send(200).json(res.locals.result);
 });
 
 module.exports = router;

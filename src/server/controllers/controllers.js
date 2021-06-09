@@ -24,9 +24,40 @@ pollController.getAllData = async (req, res, next) => {
   return next();
 };
 
-pollController.insertData = (req, res, next) => {
-  const queryString = "";
-  console.log("res in insertData", res);
+pollController.insertData = async (req, res, next) => {
+  const {
+    username,
+    tech,
+    question1,
+    question2,
+    question3,
+    question4,
+    question5,
+    question6,
+  } = req.body;
+
+  const params = [
+    question1,
+    question2,
+    question3,
+    question4,
+    question5,
+    question6,
+  ];
+  const queryString = `SELECT user_id FROM employees WHERE username = '${username}'`;
+  const result = await db.query(queryString);
+  // console.log("req.body in insertData", req.body);
+  // console.log("userId", result.rows[0].user_id);
+  const userID = result.rows[0].user_id;
+  const insertString = `INSERT INTO ${tech} VALUES($1, $2, $3, $4, $5, $6, ${userID})`;
+  try {
+
+  const result = await db.query(insertString, params);
+  res.locals.result = result
+  }catch(e){
+    console.log(`Error in pollController.insertData: ${e}`);
+  }
+  return next();
 };
 
 module.exports = pollController;
