@@ -17,6 +17,8 @@ const EmployerLogin = (props) => {
         autoComplete='current-password'
         variant='outlined'
       />
+      {/* onclick to send to the employer page */}
+      <button>SUBMIT</button>
     </div>
   );
 };
