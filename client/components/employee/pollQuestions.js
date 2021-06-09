@@ -5,6 +5,7 @@ import NextButton from './nextButton';
 
 export default function PollQuestion() {
   let [currentQuestion, setCurrentQuestion] = useState(0);
+  const [resultPoll, setResults] = useState({});
   const questions = [
     'I am pleased to work with the current version of this technology.',
     'I experience few limitations with this technology.',
@@ -17,12 +18,16 @@ export default function PollQuestion() {
   const displayQuestion = [];
   const resultPoll = {};
   questions.forEach((question) => {
-    resultPoll[question] = 0;
+    setResults((resultPoll[question] = 0));
     displayQuestion.push(
-      <CheckBoxes question={question} results={resultPoll} />
+      <CheckBoxes
+        question={question}
+        results={resultPoll}
+        setPoll={setResults}
+      />
     );
   });
-
+  console.log(resultPoll);
   return (
     <div>
       {displayQuestion[currentQuestion]
