@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "nodemon src/server/server.js & NODE_ENV=development webpack serve --open",
+    "dev": "concurrently \"cross-env nodemon src/server/server.js\" \"NODE_ENV=development webpack serve --open\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Geodudez",
@@ -34,7 +34,10 @@
     "@babel/preset-react": "^7.13.13",
     "@material-ui/icons": "^4.11.2",
     "babel-loader": "^8.2.2",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+    "concurrently": "^6.2.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
     "d3": "^6.7.0",
     "dotenv": "^10.0.0",
