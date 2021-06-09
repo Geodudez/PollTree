@@ -1,6 +1,18 @@
 const db = require("../models/models");
 const pollController = {};
 
+pollController.registration = async (req, res, next) => {
+  const { username, password } = req.body;
+  const params = [username, password];
+  const queryString = `INSERT INTO employers VALUES ($1, $2)`;
+  try {
+  const result = await db.query(queryString, params);
+  }catch(e){
+    console.log(`Error in pollController.registration: ${e}`)
+  }
+  return next;
+};
+
 pollController.getAllData = async (req, res, next) => {
   const queryStringVue = "SELECT * FROM vue";
   const queryStringD3 = "SELECT * FROM d3";
@@ -26,7 +38,7 @@ pollController.getAllData = async (req, res, next) => {
 
 pollController.insertData = async (req, res, next) => {
   const {
-    username,
+    user_id,
     tech,
     question1,
     question2,
@@ -44,17 +56,16 @@ pollController.insertData = async (req, res, next) => {
     question5,
     question6,
   ];
-  const queryString = `SELECT user_id FROM employees WHERE username = '${username}'`;
+  const queryString = `SELECT user_id FROM employees WHERE username = '${user_id}'`;
   const result = await db.query(queryString);
   // console.log("req.body in insertData", req.body);
   // console.log("userId", result.rows[0].user_id);
   const userID = result.rows[0].user_id;
   const insertString = `INSERT INTO ${tech} VALUES($1, $2, $3, $4, $5, $6, ${userID})`;
   try {
-
-  const result = await db.query(insertString, params);
-  res.locals.result = result
-  }catch(e){
+    const result = await db.query(insertString, params);
+    res.locals.result = result;
+  } catch (e) {
     console.log(`Error in pollController.insertData: ${e}`);
   }
   return next();
