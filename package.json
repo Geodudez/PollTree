@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "nodemon src/server/server.js & NODE_ENV=development webpack serve --open",
+    "dev": "concurrently \"cross-env nodemon src/server/server.js\" \"NODE_ENV=development webpack serve --open\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Geodudez",
@@ -38,6 +38,8 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "clsx": "^1.1.1",
+    "concurrently": "^6.2.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
     "d3": "^6.7.0",
     "dotenv": "^10.0.0",
