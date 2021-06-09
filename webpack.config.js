@@ -1,21 +1,21 @@
-const path = require("path");
-const webpack = require("webpack");
-const BUILD_DIR = path.resolve(__dirname, "./public/build");
+const path = require('path');
+const webpack = require('webpack');
+const BUILD_DIR = path.resolve(__dirname, './public/build');
 
 module.exports = {
-  entry: "./client/index.js",
+  entry: './client/index.js',
   output: {
-    filename: "bundle.js",
+    filename: 'bundle.js',
     path: BUILD_DIR,
   },
   mode: process.env.NODE_ENV,
   devServer: {
     port: 8080,
     proxy: {
-      "/api/**": "http://localhost:3000",
-      "/auth/**": "http://localhost:3000",
+      '/api/**': 'http://localhost:3000',
+      '/auth/**': 'http://localhost:3000',
     },
-    publicPath: "/public/build/",
+    publicPath: '/public/build/',
     hot: true,
   },
   // target: "node",
@@ -27,24 +27,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js||jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: "url-loader",
+            loader: 'url-loader',
           },
         ],
       },

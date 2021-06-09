@@ -37,6 +37,10 @@
     "babel-loader": "^8.2.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+<<<<<<< HEAD
+=======
+    "clsx": "^1.1.1",
+>>>>>>> 7c5115fc08c2b2954ae5fc4932d87727bfa4a6be
     "concurrently": "^6.2.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.6",
@@ -53,6 +57,7 @@
     "pg": "^8.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
     "sass-loader": "^12.0.0",
     "style-loader": "^2.0.0",
     "webpack-cli": "^4.7.2"
