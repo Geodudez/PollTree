@@ -6,20 +6,31 @@ import EmployeeLogin from './components/employee/employeeLogin';
 
 function App() {
   return (
-    <div className='App'>
-      LOGIN!
-      <LoginComponent />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' render={() => <LoginComponent />} />
+        <Route path='/employeeLogin' render={() => <EmployeeLogin />} />
+        <Route path='/employerLogin' render={() => <EmployerLogin />} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
 {
   /* <BrowserRouter>
 <Switch>
+
   <Route path='/employeeLogin' render={() => <EmployeeLogin />} />
   <Route path='/employerLogin' render={() => <EmployerLogin />} />
 </Switch>
 </BrowserRouter> */
+
+  {
+    /* <div className='App'>
+      LOGIN!
+      <LoginComponent />
+    </div> */
+  }
 }
 
 //yo wassup dawgs

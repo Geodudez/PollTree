@@ -21,39 +21,18 @@ const useStyles = makeStyles((theme) => ({
 function LoginComponent() {
   const classes = useStyles();
   return (
-    <div>
-      <BrowserRouter>
-        <Switch>
-          <Route path='/employeeLogin' render={() => <EmployeeLogin />} />
-          <Route path='/employerLogin' render={() => <EmployerLogin />} />
-        </Switch>
-        <div className='LoginComponent-Holder'>
-          <div id='employee-employer-login-nav'>
-            <Link to='/employeeLogin'>
-              <div>Employee</div>
-            </Link>
-            <Link to='/employerLogin'>
-              <div>Employer</div>
-            </Link>
-          </div>
-        </div>
-      </BrowserRouter>
+    <div className='LoginComponent-Holder'>
+      <div id='employee-employer-login-nav'>
+        <Link to='/employeeLogin'>
+          <div>Employee</div>
+        </Link>
+        <Link to='/employerLogin'>
+          <div>Employer</div>
+        </Link>
+      </div>
+      <div>How would you like to log in?</div>
     </div>
   );
-}
-
-{
-  /* <div className='LoginComponent-Holder'>
-<div id='employee-employer-login-nav'>
-  <Link to='/employeeLogin'>
-    <div>Employee</div>
-  </Link>
-  <Link to='/employerLogin'>
-    <div>Employer</div>
-  </Link>
-</div>
-<div>How would you like to log in?</div>
-</div> */
 }
 
 export default LoginComponent;
