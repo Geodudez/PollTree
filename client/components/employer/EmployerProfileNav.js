@@ -15,7 +15,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import PeopleIcon from '@material-ui/icons/People';
@@ -97,36 +96,36 @@ export default function EmployerProfileNav() {
     setOpen(false);
   };
 
-  console.log(classes)
+  console.log(classes);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position='fixed'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleDrawerOpen}
-            edge="start"
+            edge='start'
             className={clsx(classes.menuButton, {
               [classes.hide]: open,
             })}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant='h6' noWrap>
             Employer Profile
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+        variant='permanent'
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
@@ -140,7 +139,11 @@ export default function EmployerProfileNav() {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
@@ -152,17 +155,17 @@ export default function EmployerProfileNav() {
             </ListItem>
           ))} */}
           <ListItem button key='Data'>
-              <ListItemIcon>{<DonutLargeIcon />}</ListItemIcon>
-              <ListItemText primary='Data' />
-            </ListItem>
-            <ListItem button key='Responses'>
-              <ListItemIcon>{<MailIcon />}</ListItemIcon>
-              <ListItemText primary='Responses' />
-            </ListItem>
-            <ListItem button key='Employees'>
-              <ListItemIcon>{<PeopleIcon />}</ListItemIcon>
-              <ListItemText primary='Employees' />
-            </ListItem>
+            <ListItemIcon>{<DonutLargeIcon />}</ListItemIcon>
+            <ListItemText primary='Data' />
+          </ListItem>
+          <ListItem button key='Responses'>
+            <ListItemIcon>{<MailIcon />}</ListItemIcon>
+            <ListItemText primary='Responses' />
+          </ListItem>
+          <ListItem button key='Employees'>
+            <ListItemIcon>{<PeopleIcon />}</ListItemIcon>
+            <ListItemText primary='Employees' />
+          </ListItem>
         </List>
         <Divider />
         {/* <List>
@@ -177,6 +180,6 @@ export default function EmployerProfileNav() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
       </main>
-      </div>
+    </div>
   );
-          }
+}
