@@ -1,14 +1,13 @@
 import React from 'react';
-import Profile from './components/Profile.jsx';
-import Pie from './components/Pie.jsx';
-import Bar from './components/Bar.jsx';
+import EmployeeProfile from './components/employee/employeeProfile';
+import EmployerProfile from './components/employer/EmployerProfile'
+
 
 export default function App() {
   return (
     <div>
-      <Profile />
-      <Pie />
-      <Bar />
+     <EmployeeProfile/>
+     {/* <EmployerProfile/> */}
     </div>
   );
 }
