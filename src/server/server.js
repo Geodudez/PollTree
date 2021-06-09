@@ -1,10 +1,10 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const path = require('path');
 const app = express();
-const apiRouter = require("./routes/api");
-const bodyParser = require("body-parser");
-const passport = require("passport");
-require("./passport");
+const apiRouter = require('./routes/api');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+require('./passport');
 
 const PORT = 3000;
 
@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/public'));
 
-app.use("/api", apiRouter);
+app.use('/api', apiRouter);
 
 // I believe bodyParser has been deprecated and is now native to express?
 app.use(bodyParser.json());
@@ -32,19 +32,22 @@ const userLoggedIn = (req, res, next) => {
 };
 
 //post request signin
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-}), function (req, res, next) { 
-  console.log('inside passport local authentication')
-})
-
+app.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/employer',
+    failureRedirect: '/login',
+  }),
+  function (req, res, next) {
+    console.log('inside passport local authentication');
+  }
+);
 
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: "Express error handler caught unknown middleware error",
+    log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: "An error occurred" },
+    message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
