@@ -24,10 +24,10 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, done) {
       // const token = accessToken;
-      const password = profile.id;
-      const params = [password];
-      console.log('accessToken: ', token);
-      const queryString = `INSERT INTO employees VALUES ($1) ON CONFLICT DO NOTHING`;
+      const profileID = profile.id;
+      const params = [profileID];
+      console.log('profileID: ', profileID);
+      const queryString = `INSERT INTO employees (profile_ID) VALUES ($1) ON CONFLICT DO NOTHING`;
       db.query(queryString, params, (err, res) => {
         console.log('in linkedin/db query');
         if (err) {
@@ -35,6 +35,7 @@ passport.use(
         } else {
           console.log('success in linkedin/db query!');
         }
+        return done(null, profile);
       });
       // User.findOrCreate({ linkedinID: profile.id }, function (err, user) {
       //   if (err) {
@@ -64,10 +65,10 @@ passport.use(
         WHERE user_email=$1 AND user_pass=$2`,
           [username, password]
         )
-        .then((result) => {
+        .then(result => {
           return done(null, result);
         })
-        .catch((err) => {
+        .catch(err => {
           log.error('/login: ' + err);
           return done(null, false, { message: 'Wrong user name or password' });
         });
