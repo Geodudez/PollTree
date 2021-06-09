@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const session = require('express-session');
 const apiRouter = require('./routes/api');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const passport = require('passport');
 require('./passport');
 
@@ -15,9 +16,13 @@ app.use(express.static(__dirname + '/public'));
 
 app.use('/api', apiRouter);
 
-// I believe bodyParser has been deprecated and is now native to express?
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: true,
+    secret: 'SECRET',
+  })
+);
 
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
@@ -40,6 +45,22 @@ app.post(
   }),
   function (req, res, next) {
     console.log('inside passport local authentication');
+  }
+);
+
+app.get(
+  '/auth/linkedin',
+  passport.authenticate('linkedin', {
+    scope: ['r_emailaddress', 'r_liteprofile'],
+  })
+);
+
+//linkedin login
+app.get(
+  '/auth/linkedin/callback',
+  passport.authenticate('linkedin', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/employee');
   }
 );
 
