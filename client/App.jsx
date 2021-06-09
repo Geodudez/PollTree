@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
-import Pie from './components/Pie';
+import PieCharts from './components/Pie';
 
 function App() {
   const generateData = (value, length = 5) =>
@@ -23,7 +23,7 @@ function App() {
     <div className='App'>
       <div>
         <span className='label'>Hooks</span>
-        <Pie
+        <PieCharts
           data={data}
           width={200}
           height={200}
