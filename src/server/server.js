@@ -24,10 +24,6 @@ app.use(
   })
 );
 
-app.use((req, res) =>
-  res.status(404).send("This is not the page you're looking for...")
-);
-
 //passport configuration - initialize to initialize Passport, session for persistent login sessions
 app.use(passport.initialize());
 app.use(passport.session());
@@ -59,8 +55,8 @@ app.get(
 app.get(
   '/auth/linkedin/callback',
   passport.authenticate('linkedin', {
-    successRedirect: "http://localhost:8080/employee",
-    failureRedirect: '/'
+    // successRedirect: 'http://localhost:8080/employee',
+    failureRedirect: '/',
   }),
   function (req, res) {
     res.redirect('http://localhost:8080/employee');
@@ -71,12 +67,16 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: 'An error occurred' },
+    message: { err: `An error occurred: ${err}` },
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
+
+app.use((req, res) =>
+  res.status(404).send("This is not the page you're looking for...")
+);
 
 app.listen(PORT, () => {
   console.log(`Servin' it up on ${PORT}`);
