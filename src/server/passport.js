@@ -3,7 +3,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const LinkedinStrategy = require('passport-linkedin-oauth2').Strategy;
 const bcrypt = require('bcrypt');
-// const db = require()
+const db = require('./models/models');
 
 passport.serializeUser(function (user, cb) {
   cb(null, user);
@@ -23,17 +23,30 @@ passport.use(
       scope: process.env.LINKEDIN_SCOPE,
     },
     function (accessToken, refreshToken, profile, done) {
-      User.findOrCreate({ linkedinID: profile.id }, function (err, user) {
+      // const token = accessToken;
+      const password = profile.id;
+      const params = [password];
+      console.log('accessToken: ', token);
+      const queryString = `INSERT INTO employees VALUES ($1) ON CONFLICT DO NOTHING`;
+      db.query(queryString, params, (err, res) => {
+        console.log('in linkedin/db query');
         if (err) {
-          return done(err, user);
-        }
-        if (!user) {
-          user = new User({
-            user_id: profile.user_id,
-            access_token: profile.accessToken,
-          });
+          console.log('error in linked employees table', err);
+        } else {
+          console.log('success in linkedin/db query!');
         }
       });
+      // User.findOrCreate({ linkedinID: profile.id }, function (err, user) {
+      //   if (err) {
+      //     return done(err, user);
+      //   }
+      //   if (!user) {
+      //     user = new User({
+      //       user_id: profile.user_id,
+      //       access_token: profile.accessToken,
+      //     });
+      //   }
+      // });
     }
   )
 );
@@ -51,10 +64,10 @@ passport.use(
         WHERE user_email=$1 AND user_pass=$2`,
           [username, password]
         )
-        .then(result => {
+        .then((result) => {
           return done(null, result);
         })
-        .catch(err => {
+        .catch((err) => {
           log.error('/login: ' + err);
           return done(null, false, { message: 'Wrong user name or password' });
         });

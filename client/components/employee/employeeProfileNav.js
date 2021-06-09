@@ -18,7 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
-
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -97,66 +97,86 @@ export default function EmployeeNav() {
     setOpen(false);
   };
 
-  
-
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon id="menu_icon" />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Employee Survey DashBoard
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
+    <BrowserRouter>
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position='fixed'
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
+            <IconButton
+              color='inherit'
+              aria-label='open drawer'
+              onClick={handleDrawerOpen}
+              edge='start'
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open,
+              })}
+            >
+              <MenuIcon id='menu_icon' />
+            </IconButton>
+            <Typography variant='h6' noWrap>
+              Employee Survey DashBoard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant='permanent'
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {['Poll Questions', 'Submitted Polls'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <QuestionAnswerIcon /> : <TurnedInIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>     
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-      <EmployeePollQuestion/>
-      </main>
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            }),
+          }}
+        >
+          <div className={classes.toolbar}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? (
+                <ChevronRightIcon />
+              ) : (
+                <ChevronLeftIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {['Poll Questions', 'Submitted Polls'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? (
+                    <Link to='/pollQuestions'>
+                      <QuestionAnswerIcon />
+                    </Link>
+                  ) : (
+                    <Link to='/completedpolls'>
+                      <TurnedInIcon />
+                    </Link>
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Switch>
+            <Route
+              path='/pollQuestions'
+              render={() => <EmployeePollQuestion />}
+            />
+            {/* <Route path='/completedPolls' render={() => <CompletedPolls />} /> */}
+          </Switch>
+        </main>
       </div>
-  );  
+    </BrowserRouter>
+  );
 }

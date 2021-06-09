@@ -3,6 +3,7 @@ import LoginComponent from './components/Login.js';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import EmployerLogin from './components/employer/EmployerLogin.js';
 import EmployeeLogin from './components/employee/employeeLogin';
+import EmployeeProfile from './components/employee/employeeProfile.js';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/employerLogin' render={() => <EmployerLogin />} />
       </Switch>
     </BrowserRouter>
+    // <EmployeeProfile></EmployeeProfile>
   );
 }
 
