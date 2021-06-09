@@ -22,7 +22,7 @@ router.get("/getAllData", controller.getAllData, (req, res) => {
 });
 
 router.post("/pollResponse", controller.insertData, (req, res) => {
-  res.send(200).json(res.locals.result);
+  res.sendStatus(200);
 });
 
 module.exports = router;
