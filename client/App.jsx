@@ -3,7 +3,7 @@ import LoginComponent from './components/Login.js';
 
 function App() {
   return (
-    <div>
+    <div className='App'>
       LOGIN!
       <LoginComponent />
     </div>
