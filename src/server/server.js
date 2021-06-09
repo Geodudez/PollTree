@@ -55,8 +55,8 @@ app.get(
 app.get(
   '/auth/linkedin/callback',
   passport.authenticate('linkedin', {
-    // successRedirect: 'http://localhost:8080/employee',
-    failureRedirect: '/',
+    successRedirect: 'http://localhost:8080/',
+    failureRedirect: '/auth/error',
   }),
   function (req, res) {
     res.redirect('http://localhost:8080/employee');
