@@ -37,28 +37,28 @@ function ParticlesBackdrop() {
               },
             },
             color: {
-              value: ['#3f50b6', '#192048'],
-            },
-            shape: {
-              type: 'images',
-              image: [
-                {
-                  src: 'https://ibb.co/0XQjHsW',
-                  height: 20,
-                  width: 20,
-                },
-              ],
+              value: ['#6171c7', '#96a0d9'],
             },
             // shape: {
-            //   type: 'triangle',
-            //   stroke: {
-            //     width: 5,
-            //     color: '#f4f4f4',
-            //   },
-            //   polygon: {
-            //     nb_sides: 5,
-            //   },
+            //   type: 'images',
+            //   image: [
+            //     {
+            //       src: 'https://ibb.co/0XQjHsW',
+            //       height: 20,
+            //       width: 20,
+            //     },
+            //   ],
             // },
+            shape: {
+              type: 'triangle',
+              stroke: {
+                width: 5,
+                color: '#edeff8',
+              },
+              polygon: {
+                nb_sides: 5,
+              },
+            },
             opacity: {
               value: 0.5,
               random: false,

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as d3 from 'd3';
 import PieChart from './PieChart';
+import { Card, CardContent } from '@material-ui/core';
 
 function PieContainer(props) {
   // console.log('props', props);
@@ -145,7 +146,8 @@ function PieContainer(props) {
   // console.log('webpackq1data length', webpackq1data.length);
   if (webpackq1data.length > 0) {
     return (
-      <div>
+      <div className='statsContainer'>
+        <br />
         <div>
           <span className='label'>Webpack Question 1</span>
           <PieChart
@@ -203,6 +205,39 @@ function PieContainer(props) {
           />
         </div>
         <div> - </div>
+        <Card className='Card'>
+          <CardContent>
+            <ol>
+              <li>
+                I am pleased to work with the current version of this
+                technology.
+              </li>
+              <li>I experience few limitations with this technology.</li>
+              <li>
+                I find this technology integrates into exist codebases with
+                relative ease.
+              </li>
+              <li>
+                I feel there are necessary improvements to be made for the next
+                version of this technology.
+              </li>
+              <li>
+                I often find myself researching solutions to issues that
+                occurred in this technology.
+              </li>
+              <li>I would recommend this technology for others to use.</li>
+            </ol>
+          </CardContent>
+          <CardContent>
+            <ul>
+              <li>Orange = Strongly Disagree</li>
+              <li>Blue = Disagree</li>
+              <li>Yellow = Neutral</li>
+              <li>Green = Agree</li>
+              <li>Red = Strongly Agree</li>
+            </ul>
+          </CardContent>
+        </Card>
       </div>
     );
   } else {
