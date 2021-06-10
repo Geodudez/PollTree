@@ -18,7 +18,10 @@ export default function NextButton(props) {
   
     <div className={classes.root}>
       
-      <Button variant="outlined" color="primary" onClick={() => props.setQuestion(props.currentQuestion + 1)}>
+      <Button variant="outlined" color="primary" onClick={() => {
+        props.setQuestion(props.currentQuestion + 1);
+        props.results.push(props.tentativeArr[props.tentativeArr.length-1])
+        }}>
         Next
       </Button>
       
