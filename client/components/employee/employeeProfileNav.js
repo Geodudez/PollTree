@@ -172,7 +172,7 @@ export default function EmployeeNav() {
           <div className={classes.toolbar} />
           <Switch>
             {/* <Route path='/employeeLogin' render={() => <HomePage />} /> */}
-            <Route path='/employeeLogin' component={HomePage} />
+            <Route path='/employeeProfile' component={HomePage} />
 
             <Route
               path='/pollQuestions'

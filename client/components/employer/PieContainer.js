@@ -206,7 +206,7 @@ function PieContainer(props) {
       </div>
     );
   } else {
-    return <div>so sad</div>;
+    return <div>loading...</div>;
   }
 
   // }

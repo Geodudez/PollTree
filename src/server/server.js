@@ -55,9 +55,12 @@ app.get(
 app.get(
   '/auth/linkedin/callback',
   passport.authenticate('linkedin', {
-    successRedirect: 'http://localhost:8080/employeeProfile',
-    failureRedirect: '/auth/error',
-  })
+    // successRedirect: 'http://localhost:8080/employeeProfile',
+    // failureRedirect: '/auth/error',
+  }),
+  function (req, res) {
+    return res.status(200).send({ authenticated: true });
+  }
   // function (req, res, next) {
   //   // return res.status(200).json({});
   //   res.redirect('http://localhost:8080/employeeProfile');
@@ -65,24 +68,26 @@ app.get(
 );
 
 app.get('/employeeProfile', (req, res) => {
-  console.log('res.req.user on server side', res.req.user);
-  return res.status(200).json({ profile_id: res.req.user });
+  res.status(200);
 });
 //   res.sendFile(path.join(__dirname, '../../index.html')); // app.get('/employeeProfile', (req, res) => {
 // });
 
-app.get(
-  '/auth/google',
-  passport.authenticate('google', { scope: ['email', 'profile'] })
-);
+// app.get(
+//   '/auth/google',
+//   passport.authenticate('google', { scope: ['email', 'profile'] })
+// );
 
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', {
-    successRedirect: 'http://localhost:8080/employeeProfile',
-    failureRedirect: '/auth/error',
-  })
-);
+// app.get(
+//   '/auth/google/callback',
+//   passport.authenticate('google', {
+//     // successRedirect: 'http://localhost:8080/employeeProfile',
+//     // failureRedirect: '/auth/error',
+//   }),
+//   function (req, res) {
+//     res.status(200).send({ authenticated: true });
+//   }
+// );
 
 app.use((err, req, res, next) => {
   const defaultErr = {

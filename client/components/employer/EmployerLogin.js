@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import React from 'react';
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const EmployerLogin = (props) => {
   const [username, setUsername] = useState('');
@@ -67,12 +68,16 @@ const EmployerLogin = (props) => {
           state: { pieData: pieData },
         }}
       /> */}
-      <Link to='/employerProfile'>
-        <div>work around Allison</div>
+      <Link to='/employerProfile' style={{ textDecoration: 'none' }}>
+        <Button onClick={handleClick}>SUBMIT</Button>
       </Link>
-      <button onClick={handleClick}>SUBMIT</button>
+
       <div> Not a user? </div>
-      <Link to='/employerSignup' onClick={() => console.log('clicked')}>
+      <Link
+        to='/employerSignup'
+        style={{ textDecoration: 'none' }}
+        onClick={() => console.log('clicked')}
+      >
         sign up
       </Link>
     </div>
