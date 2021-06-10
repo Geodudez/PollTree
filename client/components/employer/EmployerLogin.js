@@ -2,7 +2,7 @@ import TextField from '@material-ui/core/TextField';
 
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const EmployerLogin = (props) => {
   const [username, setUsername] = useState('');
@@ -21,6 +21,10 @@ const EmployerLogin = (props) => {
   };
   const userInfo = { username: username, password: password };
   const handleClick = () => {
+    setPassword('');
+    setUsername('');
+    document.getElementById('outlined-helperText').value = '';
+    document.getElementById('outlined-password-input').value = '';
     fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -34,6 +38,7 @@ const EmployerLogin = (props) => {
       .then((res) => {
         console.log('i got data');
         console.log('res', res);
+        setPieData(res);
       });
   };
 
@@ -56,12 +61,17 @@ const EmployerLogin = (props) => {
         onChange={handlePasswordInput}
       />
       {/* onclick to send to the employer page */}
-      <Link to='/employerProfile' onClick={grabInfo}>
+      {/* <Redirect
+        to={{
+          pathname: '/employerProfile',
+          state: { pieData: pieData },
+        }}
+      /> */}
+      <Link to='/employerProfile'>
         <div>work around Allison</div>
       </Link>
       <button onClick={handleClick}>SUBMIT</button>
       <div> Not a user? </div>
-      {/* <a href='/employer-signup'>sign up</a> */}
       <Link to='/employerSignup' onClick={() => console.log('clicked')}>
         sign up
       </Link>

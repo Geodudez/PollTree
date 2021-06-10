@@ -57,6 +57,31 @@ app.get(
   passport.authenticate('linkedin', {
     successRedirect: 'http://localhost:8080/employeeProfile',
     failureRedirect: '/auth/error',
+  }),
+  function (req, res, next) {
+    res.redirect('http://localhost:8080/employeeProfile');
+  }
+);
+
+app.get('/employeeProfile', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../index.html'));
+});
+
+//sup? :)
+// hold on one second, plz, gonna try to see if this works
+//okay we're done. it didn't work.
+//wahhhhhh nooooo
+
+app.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] })
+);
+
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', {
+    successRedirect: 'http://localhost:8080/employeeProfile',
+    failureRedirect: '/auth/error',
   })
 );
 

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
 const PieChart = (props) => {
+  console.log('what does this generated data look like?', props.data);
   const ref = useRef(null);
   const createPie = d3
     .pie()
@@ -49,15 +50,12 @@ const PieChart = (props) => {
   }, [props.data]);
 
   return (
-
-
     <svg width={props.width} height={props.height}>
       <g
         ref={ref}
         transform={`translate(${props.outerRadius} ${props.outerRadius})`}
       />
     </svg>
-
   );
 };
 
