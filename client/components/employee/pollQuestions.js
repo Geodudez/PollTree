@@ -1,11 +1,12 @@
 import React from 'react';
 import CheckBoxes from './checkBoxes';
 import { useState } from 'react';
-import NextButton from './nextButton';
+
+
+const resultPoll = [];
 
 export default function PollQuestion() {
   let [currentQuestion, setCurrentQuestion] = useState(0);
-  const [resultPoll, setResults] = useState({});
   const questions = [
     'I am pleased to work with the current version of this technology.',
     'I experience few limitations with this technology.',
@@ -14,31 +15,29 @@ export default function PollQuestion() {
     'I often find myself researching solutions to issues that occurred in this technology.',
     'I would recommend this technology for others to use.',
   ];
-
+  const [boolean,setBool] = useState(false)
+  const checkBox = () => {
+    boolean ? setBool(false) : setBool(true)
+  }
   const displayQuestion = [];
   questions.forEach((question) => {
-    setResults((resultPoll[question] = null));
     displayQuestion.push(
       <CheckBoxes
+        allQuestions={questions}
         question={question}
         results={resultPoll}
-        setPoll={setResults}
+        setQuestion={setCurrentQuestion}
+        currentQuestion={currentQuestion}
       />
     );
   });
-  console.log(resultPoll);
+  
   return (
     <div>
       {displayQuestion[currentQuestion]
         ? displayQuestion[currentQuestion]
         : 'Poll Completed! Thank you!'}
-      {
-        <NextButton
-          setQuestion={setCurrentQuestion}
-          currentQuestion={currentQuestion}
-          onClick={() => console.log(resultPoll)}
-        />
-      }
+     
     </div>
   );
 }
