@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path='/' render={() => <LoginComponent />} />
-        <Route path='/employeeLogin' render={() => <EmployeeLogin />} />
+        <Route path='/employeeLogin' render={() => <EmployeeProfile />} />
         <Route path='/employerLogin' render={() => <EmployerLogin />} />
         <Route path='/employerSignup' render={() => <EmployerSignup />} />
         <Route path='/employerProfile' render={() => <EmployerProfile />} />

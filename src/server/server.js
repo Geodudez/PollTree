@@ -57,20 +57,19 @@ app.get(
   passport.authenticate('linkedin', {
     successRedirect: 'http://localhost:8080/employeeProfile',
     failureRedirect: '/auth/error',
-  }),
-  function (req, res, next) {
-    res.redirect('http://localhost:8080/employeeProfile');
-  }
+  })
+  // function (req, res, next) {
+  //   // return res.status(200).json({});
+  //   res.redirect('http://localhost:8080/employeeProfile');
+  // }
 );
 
 app.get('/employeeProfile', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../index.html'));
+  console.log('res.req.user on server side', res.req.user);
+  return res.status(200).json({ profile_id: res.req.user });
 });
-
-//sup? :)
-// hold on one second, plz, gonna try to see if this works
-//okay we're done. it didn't work.
-//wahhhhhh nooooo
+//   res.sendFile(path.join(__dirname, '../../index.html')); // app.get('/employeeProfile', (req, res) => {
+// });
 
 app.get(
   '/auth/google',

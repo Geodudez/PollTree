@@ -12,6 +12,7 @@ module.exports = {
   devServer: {
     port: 8080,
     proxy: {
+      '/employeeProfile': 'http://localhost:3000',
       '/api/**': 'http://localhost:3000',
       '/auth/**': 'http://localhost:3000',
     },

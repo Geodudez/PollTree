@@ -10,8 +10,13 @@ passport.serializeUser(function (user, cb) {
   cb(null, user);
 });
 
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj);
+passport.deserializeUser(async function (obj, cb) {
+  console.log('deserialize user id', obj.id);
+  const params = [obj.id];
+  const queryString = `SELECT * FROM employees WHERE profile_id=$1`;
+  const result = await db.query(queryString, params);
+  const profile_id = result.rows[0].profile_id;
+  cb(null, profile_id);
 });
 
 //linkedin strategy

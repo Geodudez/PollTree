@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
 const PieChart = (props) => {
-  console.log('what does this generated data look like?', props.data);
+  console.log('props.data in PieChart', props.data);
   const ref = useRef(null);
   const createPie = d3
     .pie()

@@ -5,22 +5,32 @@ export default function EmployeeLogin() {
   //set some state with hooks
   const [redirect, setRedirect] = useState(false);
 
-  const setToTrue = () => {
-    setRedirect(true);
+  const handleClick = () => {
+    fetch('http://localhost:8080/auth/linkedin', {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((res) => console.log(res))
+      // .then((res) => console.log(JSON.stringify(res)))
+      .catch((err) => console.log('there is an error', err));
   };
 
   if (redirect === false) {
     return (
       <div className='LoginComponent-Holder'>
-        <a href='http://localhost:8080/auth/linkedin'>Sign in with LinkedIn </a>
-        <Link to='/employeeProfile'>
-          <div>work around Allison</div>
-        </Link>
+        <button onClick={handleClick}>Sign in with LinkedIn</button>
+        {/* <a href='http://localhost:8080/auth/linkedin'>Sign in with LinkedIn </a> */}
       </div>
     );
-    // setRedirect(true);
   }
   if (redirect === true) {
     return <Redirect to='/employeeProfile' />;
   }
 }
+
+// {
+//   /* <Link to='/employeeProfile'>
+//   <div>work around Allison</div>
+// </Link>; */
+// }
