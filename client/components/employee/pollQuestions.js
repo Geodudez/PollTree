@@ -1,7 +1,7 @@
 import React from 'react';
 import CheckBoxes from './checkBoxes';
 import { useState } from 'react';
-
+import SubmitButton from './submitButton';
 
 const resultPoll = [];
 
@@ -15,15 +15,11 @@ export default function PollQuestion() {
     'I often find myself researching solutions to issues that occurred in this technology.',
     'I would recommend this technology for others to use.',
   ];
-  const [boolean,setBool] = useState(false)
-  const checkBox = () => {
-    boolean ? setBool(false) : setBool(true)
-  }
+
   const displayQuestion = [];
   questions.forEach((question) => {
     displayQuestion.push(
       <CheckBoxes
-        allQuestions={questions}
         question={question}
         results={resultPoll}
         setQuestion={setCurrentQuestion}
@@ -31,13 +27,20 @@ export default function PollQuestion() {
       />
     );
   });
-  
+
   return (
     <div>
-      {displayQuestion[currentQuestion]
-        ? displayQuestion[currentQuestion]
-        : 'Poll Completed! Thank you!'}
-     
+      {displayQuestion[currentQuestion] ? (
+        <div>
+          <h1 id='polling_tech'>Webpack</h1>
+          {displayQuestion[currentQuestion]}
+        </div>
+      ) : (
+        <div>
+          <h3>Poll Completed! Thank you!</h3>
+          <SubmitButton results={resultPoll} />
+        </div>
+      )}
     </div>
   );
 }

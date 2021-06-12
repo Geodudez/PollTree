@@ -1,6 +1,8 @@
 import TextField from '@material-ui/core/TextField';
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const EmployerSignup = (props) => {
   const [username, setUsername] = useState('');
@@ -45,7 +47,9 @@ const EmployerSignup = (props) => {
         onChange={handlePasswordInput}
       />
       {/* onclick to send to the employer page */}
-      <button onClick={handleClick}>SUBMIT</button>
+      <Link to='/employerProfile' style={{ textDecoration: 'none' }}>
+        <Button onClick={handleClick}>SUBMIT</Button>
+      </Link>
     </div>
   );
 };

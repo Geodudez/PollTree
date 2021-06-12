@@ -2,6 +2,7 @@ require('dotenv').config();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const LinkedinStrategy = require('passport-linkedin-oauth2').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const bcrypt = require('bcrypt');
 const db = require('./models/models');
 
@@ -9,8 +10,13 @@ passport.serializeUser(function (user, cb) {
   cb(null, user);
 });
 
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj);
+passport.deserializeUser(async function (obj, cb) {
+  console.log('deserialize user id', obj.id);
+  const params = [obj.id];
+  const queryString = `SELECT * FROM employees WHERE profile_id=$1`;
+  const result = await db.query(queryString, params);
+  const profile_id = result.rows[0].profile_id;
+  cb(null, profile_id);
 });
 
 //linkedin strategy
@@ -37,17 +43,6 @@ passport.use(
         }
         return done(null, profile);
       });
-      // User.findOrCreate({ linkedinID: profile.id }, function (err, user) {
-      //   if (err) {
-      //     return done(err, user);
-      //   }
-      //   if (!user) {
-      //     user = new User({
-      //       user_id: profile.user_id,
-      //       access_token: profile.accessToken,
-      //     });
-      //   }
-      // });
     }
   )
 );
@@ -76,23 +71,27 @@ passport.use(
   )
 );
 
-// passport.serializeUser((user, done) => {
-//   log.debug('serialize ', user);
-//   done(null, user.user_id);
-// });
-
-// passport.deserializeUser((id, done) => {
-//   log.debug('deserualize ', id);
-//   db.one(
-//     `SELECT user_id, user_name, user_email, user_role FROM users
-//             WHERE user_id = $1`,
-//     [id]
-//   )
-//     .then(user => {
-//       //log.debug("deserializeUser ", user);
-//       done(null, user);
-//     })
-//     .catch(err => {
-//       done(new Error(`User with the id ${id} does not exist`));
-//     });
-// });
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    },
+    function (accessToken, refreshToken, profile, done) {
+      const profileID = profile._json.sub;
+      const params = [profileID];
+      console.log('profileID: ', profileID);
+      const queryString = `INSERT INTO employees (profile_ID) VALUES ($1) ON CONFLICT DO NOTHING`;
+      db.query(queryString, params, (err, res) => {
+        console.log('in google/db query');
+        if (err) {
+          console.log('error in google employees table', err);
+        } else {
+          console.log('success in google/db query!');
+        }
+        return done(null, profile);
+      });
+    }
+  )
+);

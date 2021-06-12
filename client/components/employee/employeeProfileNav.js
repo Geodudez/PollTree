@@ -19,6 +19,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import HomePage from './homepage';
+import PollQuestion from './employeePollQuestions';
 
 const drawerWidth = 240;
 
@@ -169,9 +171,13 @@ export default function EmployeeNav() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>
+            {/* <Route path='/employeeLogin' render={() => <HomePage />} /> */}
+            <Route path='/employeeProfile' component={HomePage} />
+
             <Route
               path='/pollQuestions'
-              render={() => <EmployeePollQuestion />}
+              // render={() => <EmployeePollQuestion />}
+              component={PollQuestion}
             />
             {/* <Route path='/completedPolls' render={() => <CompletedPolls />} /> */}
           </Switch>
